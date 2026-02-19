@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Portfolio</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e293b,#0f172a);
+    color:#f1f5f9;
+    scroll-behavior:smooth;
+    line-height:1.7;
+}
+
+/* NAVIGATION */
+nav{
+    position:fixed;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(20px);
+    padding:12px 40px;
+    border-radius:50px;
+    border:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 8px 25px rgba(0,0,0,0.3);
+    z-index:1000;
+}
+
+nav a{
+    color:#e2e8f0;
+    text-decoration:none;
+    margin:0 20px;
+    font-weight:500;
+    position:relative;
+    transition:0.3s ease;
+}
+
+nav a::after{
+    content:'';
+    position:absolute;
+    bottom:-5px;
+    left:50%;
+    width:0%;
+    height:2px;
+    background:white;
+    transition:0.4s ease;
+    transform:translateX(-50%);
+}
+
+nav a:hover::after{
+    width:100%;
+}
+
+
+/* SECTION */
+section{
+    padding:160px 12% 120px;
+    min-height:100vh;
+}
+section{
+    padding:160px 12% 120px;
+    min-height:100vh;
+    transition:opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* HEADINGS */
+h2{
+    font-size:2.2rem;
+    font-weight:600;
+    margin-bottom:60px;
+    text-align:center;
+    letter-spacing:1px;
+}
+
+/* ABOUT SECTION */
+.about{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:70px;
+    flex-wrap:wrap;
+}
+
+.about img{
+    width:100%;
+    max-width:240px; /* caps the size */
+    aspect-ratio:1/1; /* ensures perfect square */
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid rgba(255,255,255,0.2);
+    box-shadow:0 15px 40px rgba(0,0,0,0.4);
+    transition: transform 0.4s ease;
+}
+
+.about img:hover{
+    transform:scale(1.05);
+}
+
+.about-text{
+    max-width:700px;
+}
+
+.about-text p{
+    margin-bottom:25px;
+    color:#cbd5e1;
+}
+.about img{
+    animation:floatProfile 6s ease-in-out infinite;
+}
+
+@keyframes floatProfile{
+    0%{transform:translateY(0px);}
+    50%{transform:translateY(-10px);}
+    100%{transform:translateY(0px);}
+}
+
+
+/* GLASS CARD CONTAINER */
+.card-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:35px;
+}
+.card-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+    gap:25px; /* smaller gap for mobile */
+}
+
+/* GLASS CARD */
+.card{
+    position:relative; /* IMPORTANT */
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(25px);
+    border-radius:20px;
+    padding:25px;
+    border:1px solid rgba(255,255,255,0.1);
+    box-shadow:0 10px 35px rgba(0,0,0,0.3);
+    transition:transform 0.4s ease, box-shadow 0.4s ease;
+    transform-style:preserve-3d;
+    overflow:hidden; /* for shine effect */
+    
+}
+.card{
+    min-height:320px;
+}
+
+.card::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,0.2),transparent);
+    transition:0.8s;
+}
+
+.card:hover::before{
+    left:100%;
+}
+
+.card:hover::before{
+    left:100%;
+}
+
+.card img{
+    width:100%;
+    height:auto; /* auto height to maintain aspect ratio */
+    max-height:200px; /* caps the height */
+    object-fit:cover;
+    border-radius:15px;
+    display:block;
+    margin-bottom:15px;
+    transition: transform 0.6s cubic-bezier(.16,1,.3,1);
+}
+
+.card:hover img{
+    transform:scale(1.1) rotateX(5deg) rotateY(-5deg);
+}
+
+.card:hover{
+    transform:translateY(-12px) rotateX(4deg);
+    box-shadow:0 30px 60px rgba(0,0,0,0.5);
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:40px;
+    color:#94a3b8;
+}
+
+/* SCROLL ANIMATION */
+.reveal{
+    opacity:0;
+    transform:translateY(60px) scale(0.9);
+    filter:blur(8px);
+    transition:1s cubic-bezier(.16,1,.3,1);
+}
+
+.reveal.active{
+    opacity:1;
+    transform:translateY(0) scale(1);
+    filter:blur(0);
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .about{
+        flex-direction:column;
+        text-align:center;
+    }
+}
+body{
+    animation:pageFade 1.2s ease forwards;
+    opacity:0;
+}
+
+@keyframes pageFade{
+    to{opacity:1;}
+}
+body::before,
+body::after{
+    content:'';
+    position:fixed;
+    width:400px;
+    height:400px;
+    border-radius:50%;
+    filter:blur(120px);
+    z-index:-1;
+}
+
+body::before{
+    background:#3b82f6;
+    top:-100px;
+    left:-100px;
+    animation:blobMove1 20s infinite alternate ease-in-out;
+}
+
+body::after{
+    background:#9333ea;
+    bottom:-100px;
+    right:-100px;
+    animation:blobMove2 25s infinite alternate ease-in-out;
+}
+
+@keyframes blobMove1{
+    0%{transform:translate(0,0);}
+    100%{transform:translate(200px,150px);}
+}
+
+@keyframes blobMove2{
+    0%{transform:translate(0,0);}
+    100%{transform:translate(-200px,-150px);}
+}
+img{
+    transition: transform 0.4s ease;
+}
+
+img:hover{
+    transform: scale(1.05);
+}
+
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <a href="#about">About</a>
+    <a href="#hobbies">Hobbies</a>
+    <a href="#family">Family</a>
+    <a href="#memories">Memories</a>
+</nav>
+
+<!-- ABOUT -->
+<section id="about">
+    <h2 class="reveal">About Me</h2>
+    <div class="about reveal">
+        <img src="image/ako.jpg" alt="Profile">
+        <div class="about-text">
+   <p>
+        Hello! I'm <b>Mataverde, Joshua Paul G.</b>, an aspiring System Analyst with a strong passion for understanding how systems work and how they can be improved to make organizations more efficient, secure, and innovative. As an IT student, I continuously strive to enhance my skills in system analysis, database management, and problem-solving to prepare myself for a successful career in the technology industry.
+    </p>
+
+    <p>
+        My goal is to secure a stable and rewarding job that will allow me to build a financially secure future. I believe that hard work, discipline, consistency, and continuous learning are the foundations of long-term success. Through dedication and perseverance, I am determined to achieve both professional growth and personal stability.
+    </p>
+
+    <p>
+        Beyond my career ambitions, I dream of living a simple, peaceful life with my family. In the future, I hope to have a loving wife and children and raise them in a quiet environment away from chaos and noise. For me, true success is not only defined by career achievements but also by the happiness, security, and stability of the family I will build.
+    </p>
+    </div>
+</section>
+
+<!-- HOBBIES -->
+<section id="hobbies">
+    <h2 class="reveal">My Hobbies</h2>
+    <div class="card-container">
+        <div class="card reveal">
+            <img src="image/download.jpg">
+            <h3>Gaming</h3>
+            <p>I love competitive and strategy games.</p>
+        </div>
+        <div class="card reveal">
+            <img src="image/code.jpg">
+            <h3>Coding</h3>
+            <p>Building websites and information systems.</p>
+        </div>
+        <div class="card reveal">
+            <img src="image/dl2.jpg">
+            <h3>Music</h3>
+            <p>Music keeps me focused and inspired.</p>
+        </div>
+        <div class="card reveal">
+            <img src="image/web.jpg">
+            <h3>Website Designing</h3>
+            <p>Making better User Interfaces and Experiences.</p>
+        </div>
+        <div class="card reveal">
+            <img src="image/mov.jpg">
+            <h3>Watching Movies & Anime</h3>
+            <p>Enjoying a wide variety of films and anime series.</p>
+        </div>
+        <div class="card reveal">
+            <img src="image/reading.jpg">
+            <h3>Reading Manhwa & Manga</h3>
+            <p>Reading and enjoying various manhwa and manga series.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FAMILY -->
+<section id="family">
+    <h2 class="reveal">My Family</h2>
+    <div class="card-container">
+        <div class="card reveal">
+            <img src="image/pa.jpg">
+            <h3>Father</h3>
+            <p>Strong and hardworking.</p>
+        </div>
+        <div class="card reveal">
+            <img src="image/ma.jpg">
+            <h3>Mother</h3>
+            <p>Loving and supportive.</p>
+        </div>
+        <div class="card reveal">
+            <img src="image/kuya.jpg">
+            <h3>Older Brother</h3>
+            <p>My best friend.</p>
+        </div>
+        <div class="card reveal">
+            <img src="image/sis.jpg">
+            <h3>Sister</h3>
+            <p>My beloved sister.</p>
+        </div>
+    </div>
+</section>
+
+<!-- MEMORIES -->
+<section id="memories">
+    <h2 class="reveal">Memories</h2>
+    <div class="card-container">
+        <div class="card reveal">
+            <img src="image/kyut.jpg">
+            <p>Around 4-5 yrs old</p>
+        </div>
+        <div class="card reveal">
+            <img src="image/ek.jpg">
+            <p>Echanted Kingdom</p>
+        </div>
+        <div class="card reveal">
+            <img src="image/elementary-days.jpg">
+            <p>Elementary</p>
+        </div>
+        <div class="card reveal">
+            <img src="image/posee.jpg">
+            <p>POSE</p>
+        </div>
+        <div class="card reveal">
+            <img src="image/family photo after church.jpg">
+            <p>Old Family Photo</p>
+        </div>
+        <div class="card reveal">
+            <img src="image/3.jpg">
+            <p>Jollibee</p>
+        </div>
+        <div class="card reveal">
+            <img src="image/jollibee.jpg">
+            <p>3 Cutie</p>
+        </div>
+        <div class="card reveal">
+            <img src="image/w broth.jpg">
+            <p>With My Older Brother</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Mataverde, Joshua Paul G. | All Rights Reserved</p>
+</footer>
+
+<!-- SCROLL SCRIPT -->
+<script>
+window.addEventListener('scroll', reveal);
+
+function reveal(){
+    var reveals = document.querySelectorAll('.reveal');
+    for(var i = 0; i < reveals.length; i++){
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        var elementVisible = 100;
+
+        if(elementTop < windowHeight - elementVisible){
+            reveals[i].classList.add('active');
+        }
+    }
+}
+</script>
+
+</body>
+</html>
